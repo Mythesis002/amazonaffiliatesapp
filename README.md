@@ -31,4 +31,4 @@ To install the Affiliate Project, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/affiliate-project.git
+   git clone https://github.com/Mythesis002/affiliate-project.git
