@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use a compatible port for Cyclic
+const PORT = process.env.PORT || 3000; // Use a compatible port for Cyclic
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
