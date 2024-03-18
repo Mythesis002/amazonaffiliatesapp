@@ -31,6 +31,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html')); // Replace 'index.html' with the actual name of your HTML file
 });
 
+// Serve frontend files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Start server
