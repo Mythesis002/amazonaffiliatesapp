@@ -26,7 +26,12 @@ app.post('/store-data', (req, res) => {
 });
 
 // Serve frontend files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Handle GET requests for the root URL
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Replace 'index.html' with the actual name of your HTML file
+});
+
+
 
 // Start server
 app.listen(PORT, () => {
