@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT_09</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+        input {
+            caret-color: rgb(41, 151, 210);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 350px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding-bottom: 100px;
+            padding-top: 90px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-logo {
+            position: absolute;
+            top: 65px;
+            left: 115px;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            background: url("https://embed.filekitcdn.com/e/ercg4Zjiyu1hGGNbUanY63/U2v2pUUhMD6GmRcAoXxVU") no-repeat center;
+            background-size: 80px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .brand-title {
+            margin-top: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #1DA1F2;
+            text-align: center;
+        }
+
+        .inputs {
+            margin-top: 30px;
+        }
+
+        label,
+        input,
+        button {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #1DA1F2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d8adf;
+        }
+
+        .error-notification {
+            size-adjust: 10%;
+            padding: 2px 50px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff; /* White background */
+            color: #000000; /* Red text color */
+            border: 2px solid #0d8adf; /* Red border */
+            text-align: center;
+            border-radius: 5px;
+            opacity: 0;
+            animation: fadeOut 6s forwards;
+            width: 200px; /* Adjust width as needed */
+            height: auto; /* Let the height adjust based on content */
+            z-index: 11111;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                background-image: none;
+                justify-content: flex-start;
+                padding-top: 20px;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+        }
+        .skip-message {
+            background-color: rgb(255, 255, 255); /* Adjust opacity as needed */
+            backdrop-filter: blur(10px); /* Adjust blur intensity as needed */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+            font-size: 10px;
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            max-width: 80%;
+            text-align: center;
+
+        }
+        .skip-message h2 {
+            margin-bottom: 10px;
+        }
+
+        .skip-message p {
+            margin-bottom: 20px;
+        }
+
+        .skip-message button {
+            padding: 5px 10px;
+            background-color: #1DA1F2;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        /* Define keyframes for the animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+        }
+
+        /* Apply animation to the skip message */
+        .skip-message {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        /* Apply animation to hide the skip message */
+        .skip-message.hide {
+            animation: slideOut 0.5s ease forwards;
+        }
+        footer {
+            align-items: center;
+            background-color: #f0f0f0;
+            padding-left: 25px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subscribe {
+            text-align: left;
+        }
+
+        .subscribe h3 {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .subscribe-form input[type="email"] {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .subscribe-form button {
+            padding: 8px 20px;
+            padding-left: 10px;
+            background-color: #1DA1F2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .social-icons {
+            display: flex;
+        }
+
+        .social-icons .icon {
+            margin-right: 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .social-icons .icon:hover {
+            color: #007bff;
+        }
+        .company-icons {
+            position: absolute;
+            top: 625px;
+            right: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding-left: 76px;
+            padding-right: 80px;
+        }
+
+        .company-icons .icon {
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 36px;
+        }
+
+        .company-icons .icon:last-child {
+            margin-right: 0;
+        }
+
+        .company-icons .icon:hover {
+            color: #007bff;
+        }
+        .header {
+    background-color: #ffffff; /* Background color */
+    padding-bottom: 40px; /* Padding around the header */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+}
+
+.menu-button {
+    font-size: 14px; /* Font size of the menu button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.actions {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+}
+
+.ask-me,
+.report-button {
+    position: relative;
+    left: px;
+    font-size: 12px;
+    font-weight: 10px;
+    margin-left: 10px; /* Add some spacing between items */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+}
+
+.report-options {
+    display: none; /* Initially hide the report options */
+    position: absolute; /* Position absolute to overlay other content */
+    top: 100%; /* Position below the report button */
+    right: 0; /* Align with the right edge of the report button */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    padding: 10px; /* Padding inside the report options */
+    z-index: 1; /* Ensure it's above other content */
+}
+
+.report-options a {
+    display: block; /* Display links as block elements */
+    color: #333; /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    padding: 5px 0; /* Add some vertical padding */
+}
+
+.report-options a:hover {
+    background-color: #f2f2f2; /* Change background color on hover */
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Code HTML -->
+
+    <div id="skipMessage" class="skip-message" style="display: none;">
+        <h2>Content</h2>
+        <p>
+            <span style="color: #1DA1F2;">MT_09</span> revolutionizes online shopping, offering a seamless way to earn while you shop. Simply input product URLs and phone numbers to claim up to 30% profits on purchases. With MT_09, every purchase translates into financial gain on a futuristic platform. Join Free to experience Profit.
+        </p>
+        <button id="closeSkipMessage">Skip</button>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="menu-button">&#9776;</div>
+            <div class="actions">
+                <a href="mailto:mythesisads@gmail.com" class="ask-me">Ask Me</a>
+                <div class="report-button"><a href="https://drive.google.com/file/d/1qFBWLqpQMa4sEBDXVEpB5COTlsAYIZJI/view?usp=sharing">Commission</div>
+                <div class="report-options">
+                    <a href="#">Learn</a>
+                    <a href="#">Earning</a>
+                    <a href="#">More</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="brand-logo"></div>
+        <div class="brand-title"><span style="color: #ffffff;">#Get</span><br> Your Purchase Profit</div>
+        <form id="affiliateForm" class="inputs">
+            <label for="productUrl">Product URL:</label>
+            <input type="text" id="productUrl" name="productUrl" placeholder="Enter Amazon product URL" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number LInked to your bank" required>
+
+            <input type="hidden" id="associateTag" name="associateTag" value="7151-21">
+
+            <!-- Changed button type to "button" -->
+            <button type="button" id="generateButton">Claim upto 30% Of Purchase</button>
+        </form>
+
+        <footer>
+            <div class="footer-content">
+                <div class="subscribe">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="company-icons">
+                    <a href="#" class="icon shopify"><i class="fab fa-shopify"></i></a>
+                    <a href="#" class="icon amazon"><i class="fab fa-amazon"></i></a>
+                    <a href="https://fkrtt.in/OP/ln9ltv3tzqt" class="icon flipkart"><img src="https://embed.filekitcdn.com/e/ercg4Zjiyu1hGGNbUanY63/k9zNdkk1hpgk1o2AunziKn" alt="Flipkart Icon"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Function to show the skip message
+        function showSkipMessage() {
+            document.getElementById('skipMessage').style.display = 'block';
+        }
+
+        // Function to hide the skip message
+        function hideSkipMessage() {
+            document.getElementById('skipMessage').style.display = 'none';
+        }
+
+        // Event listener to show skip message when the window loads
+        window.onload = function() {
+            showSkipMessage();
+        };
+
+        // Event listener to hide skip message when the skip button is clicked
+        document.getElementById('closeSkipMessage').addEventListener('click', function() {
+            hideSkipMessage();
+        });
+        document.getElementById('generateButton').addEventListener('click', function() {
+            // Show spinner inside the button
+            document.getElementById('generateButton').innerHTML = '<span class="spinner"></span>Loading...';
+
+            // Call the generateAffiliateLink function
+            generateAffiliateLink();
+        });
+
+        function generateAffiliateLink() {
+            var productUrl = document.getElementById('productUrl').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var associateTag = document.getElementById('associateTag').value;
+
+            // Amazon product URL validation
+            if (!productUrl.includes('amzn.eu')) {
+                showErrorNotification('Please provide a valid Amazon product URL.');
+                resetButton(); // Reset button content
+                return; // Exit function to prevent further execution
+            }
+
+            // Phone number validation
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                showErrorNotification('Please enter a valid 10-digit phone number.');
+                resetButton(); // Reset button content
+                return; // Exit function to prevent further execution
+            }
+
+            var affiliateLink = productUrl + '?tag=' + associateTag;
+
+            // Log the data to verify it before making the fetch request
+            console.log('Data to be sent:', {
+                productUrl: productUrl,
+                phoneNumber: phoneNumber,
+                associateTag: associateTag,
+                timestamp: new Date().toISOString()
+            });
+
+            // Simulate a delay of 3 seconds to mimic loading/spinning
+            setTimeout(function() {
+                // Send data to backend endpoint
+                fetch('/store-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productUrl: productUrl,
+                        phoneNumber: phoneNumber,
+                        associateTag: associateTag,
+                        timestamp: new Date().toISOString()
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        // Change the button text to "Now Buy"
+                        document.getElementById('generateButton').innerText = 'Now Buy';
+                        // Redirect user to affiliate link when the button is clicked
+                        document.getElementById('generateButton').setAttribute('onclick', 'window.location.href="' + affiliateLink + '"');
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to store data');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    showErrorNotification('Failed to store data. Please try again.');
+                    resetButton(); // Reset button content
+                });
+            }, 3000); // Set the loading/spinning time to 3 seconds
+        }
+
+        function showErrorNotification(message) {
+            var notification = document.createElement('div');
+            notification.classList.add('error-notification');
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(function() {
+                notification.remove();
+            }, 3000); // Remove the notification after 3 seconds
+        }
+
+        function resetButton() {
+            // Reset button content to its original state
+            document.getElementById('generateButton').innerHTML = 'Claim upto 30% Of Purchase';
+        }
+
+    </script>
+</body>
+</html>
